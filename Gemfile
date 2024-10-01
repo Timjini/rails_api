@@ -19,6 +19,7 @@ gem "redis", ">= 4.0.1"
 # sidekiq
 gem "sidekiq"
 gem "sidekiq-scheduler"
+gem 'nokogiri', '~> 1.16', '>= 1.16.7'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
