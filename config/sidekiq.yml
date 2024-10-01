@@ -1,0 +1,26 @@
+# :concurrency: <%= ENV.fetch("SIDEKIQ_MAX_THREADS") { 10 } %>
+
+# # staging:
+# #   :concurrency: <%= ENV.fetch("SIDEKIQ_MAX_THREADS") { 10 } %>
+
+# # production:
+# #   :concurrency: <%= ENV.fetch("SIDEKIQ_MAX_THREADS") { 10 } %>
+:concurrency: 3
+:timeout: 60
+:verbose: false # set to true to see the logs
+:queues:
+  - default
+
+:retry: 3
+
+# tasks: &tasks
+#   SayHiJob:
+#     cron: "0 2 * * *"
+#     queue: default
+#     description: "Write the utility of the job"
+:scheduler:
+  :schedule:
+    SayHiJob:
+      cron: "* * * * *" 
+      queue: default
+      description: "Write the utility of the job"
