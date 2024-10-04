@@ -21,6 +21,6 @@
 :scheduler:
   :schedule:
     SayHiJob:
-      cron: "* * * * *" 
+      cron: "*/30 * * * *" 
       queue: default
       description: "Write the utility of the job"
