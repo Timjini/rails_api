@@ -7,8 +7,10 @@ require 'json'
 
 class NewsReaderJob < ApplicationJob
   include DataHelper
-  def perform
-    html_content = HttpClient.global_get_request('https://www.bbc.com/')
+  def perform(websites= nil)
+    # 'https://www.bbc.com/'
+    website = 'https://www.msn.com/en-us'
+    html_content = HttpClient.global_get_request(website)
     safe_html, body_content, head_lines = DocumentContentExtractor.extract_body_content(html_content)
 
     options = {safe_html: safe_html, body_content: body_content, head_lines: head_lines}
