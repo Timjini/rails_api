@@ -3,12 +3,11 @@ class DocumentContentExtractor
   def self.extract_body_content(html)
     document = Nokogiri::HTML(html)
     body = document.at('body')
-    # content = document.at('main')
-    content = document.css('.content-container')
+    content = document.at('main')
+    # content = document.css('.content-container')
     # safe html 
     safe_html = content.to_html
     head_lines = {}
-    byebug
     content.css('a').each_with_index do |header, index|
       current_line = {}
       current_line['url'] = header['href']
@@ -18,7 +17,6 @@ class DocumentContentExtractor
       current_line['description'] = p.text.strip if p
       img = header.at('img')
       current_line['image_url'] = img['src'] if img
-      byebug
       head_lines[index] = current_line
     end
 
